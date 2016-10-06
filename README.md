@@ -1,35 +1,51 @@
-<h1 align="center">koa-history-api-fallback</h1>
-<p align="center">Koa implementation of [connect-history-api-fallback](https://github.com/bripkens/connect-history-api-fallback)
+# @overra/koa-history-api-fallback
+Koa v2 implementation of [connect-history-api-fallback](https://github.com/bripkens/connect-history-api-fallback)
 
-[![NPM](https://nodei.co/npm/koa-history-api-fallback.png?downloads=true&downloadRank=true)](https://nodei.co/npm/koa-history-api-fallback/)
+[![npm](https://img.shields.io/npm/v/@overra/koa-history-api-fallback.svg?maxAge=3600)]()
+[![David](https://img.shields.io/david/dev/overra/koa-history-api-fallback.svg?maxAge=3600)]()
 
 ## Introduction
 
-This is simple rewrite of [connect-history-api-fallback](https://github.com/bripkens/connect-history-api-fallback)
+This is a fork of [koa-history-api-fallback](https://github.com/dalhorinek/koa-history-api-fallback) which is a simple rewrite of [connect-history-api-fallback](https://github.com/bripkens/connect-history-api-fallback)
 
 ## Usage
 
 The middleware is available through NPM and can easily be added.
 
 ```
-npm install --save koa-history-api-fallback
+npm install --save @overra/koa-history-api-fallback
 ```
 
 Import the library
 
 ```javascript
-var historyApiFallback = require('koa-history-api-fallback');
+const historyApiFallback = require('koa-history-api-fallback');
 
-var app = koa();
+const app = new Koa();
 
 app.use(historyApiFallback());
+```
+
+To use this with [koa-webpack-middleware](https://github.com/leecade/koa-webpack-middleware) you'll need to do the following.
+
+```javascript
+const {devMiddleware, hotMiddleware} = require('koa-webpack-middleware')
+const historyApiFallback = require('@overra/koa-history-api-fallback')
+
+// ...
+const app = new Koa()
+const webpackMiddleware = devMiddleware(compiler, options)
+
+app.use(webpackMiddleware) // serve up webpack content
+app.use(historyApiFallback()) // catch any other requests and redirect to /index.html
+app.use(webpackMiddleware) // serve up webpack content
 ```
 
 ## Options
 You can optionally pass options to the library when obtaining the middleware
 
 ```javascript
-var middleware = historyApiFallback({});
+const middleware = historyApiFallback({});
 ```
 
 ### index
