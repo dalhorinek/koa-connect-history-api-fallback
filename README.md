@@ -1,3 +1,5 @@
+ Version 1.0.0 includes fix for koa v3.
+
 <h1 align="center">koa-history-api-fallback</h1>
 <p align="center">Koa implementation of [connect-history-api-fallback](https://github.com/bripkens/connect-history-api-fallback)
 
